@@ -32,6 +32,20 @@ class usersService {
       })
     }
 
+
+    update(id, changes){
+      const index = this.users.findIndex(user => user.id === id)
+      const user = this.users.find(user => user.id === id)
+      if(index === -1){
+        throw new Error('User not found')
+      }
+      this.users[index] = {
+          ...user,
+          ...changes
+      }
+
+    }
+
     delete(id){
       const newUsers = this.users.filter(user => user.id !== id)
       this.users = newUsers;
