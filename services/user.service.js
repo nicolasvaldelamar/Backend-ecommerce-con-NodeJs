@@ -26,10 +26,18 @@ class usersService {
     }
 
     create(data){
-      return this.users.push({
+      this.users.push({
         id: faker.datatype.uuid(),
         ...data
       })
+      data = {
+        id: faker.datatype.uuid(),
+        ...data
+      }
+      return {
+        description: "Usuario creado",
+        data: data
+      }
     }
 
 
@@ -42,6 +50,10 @@ class usersService {
       this.users[index] = {
           ...user,
           ...changes
+      }
+      return {
+        description: "Usuario actualizado",
+        data: this.users[index]
       }
 
     }

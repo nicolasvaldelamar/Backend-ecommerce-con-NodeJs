@@ -17,7 +17,8 @@ router.get('/:id', (req, res)=>{
 router.post('/', (req, res)=>{
     const body = req.body;
     const rta = service.create(body);
-    res.status(201).json(rta)
+    console.log(rta)
+    res.json(rta)
 })
 
 router.delete('/:id', (req, res)=>{
@@ -26,6 +27,12 @@ router.delete('/:id', (req, res)=>{
     res.json(response)
 })
 
+router.patch('/:id', (req, res) => {
+  const { id } = req.params
+  const data = req.body
+  const response = service.update(id, data)
+  res.json(response)
+})
 
 
 module.exports = router
